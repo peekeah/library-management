@@ -1,3 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background-color: #E9D5DA;
 }
+
+.form-group {
+    position: relative;
+}
+
+body {
+    font-size: 20px;
+}
+
+.error-element {
+    color: red;
+    font-size: 16px;
+    position: absolute;
+    top: 2.3rem;
+}
+
+.table-outer {
+    background-color: #4D4C7D;
+    border-radius: 1.3rem;
+    padding: 0.7rem;
+    font-size: 2rem;
+}
+
+table{
+    font-family: 'Lato', sans-serif;
+}
+
+table td {
+    padding: 10px;
+    font-size: 3rem;
+    color: #fff;
+}
+

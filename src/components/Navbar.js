@@ -11,7 +11,7 @@ function Navbar() {
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" style={{backgroundColor: '#4D4C7D'}}>
+        <AppBar position="static" style={{backgroundColor: '#363062'}}>
           <Toolbar>
             <Button onClick={() => navigate("/")} color="inherit">dashboard</Button>
           </Toolbar>

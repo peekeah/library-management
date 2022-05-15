@@ -2,7 +2,6 @@ import {
   Backdrop,
   Button,
   CircularProgress,
-  Paper,
   Table,
   TableBody,
   TableCell,
@@ -24,11 +23,8 @@ function Dashboard() {
   const [counter, setCounter] = useState(0);
 
   useEffect(() => {
-    axios
-      .get(URL)
-      .then((response) => response)
-      .then(({ data }) => setData(data));
-  }, []);
+    axios.get(URL).then((res) => setData(res.data));
+  }, [counter]);
 
   const handleEdit = (book) => {
     navigate(`/edit-book/${book.id}`, {
@@ -51,18 +47,21 @@ function Dashboard() {
           <div className="d-flex justify-content-center mt-5">
             <Button
               variant="contained"
-              style={{ backgroundColor: "Black" }}
+              style={{ backgroundColor: "#4D4C7D" }}
               onClick={() => navigate("/add-book")}
             >
               Add Book
             </Button>
           </div>
           <div className="mt-5">
-            <TableContainer component={Paper}>
+            <TableContainer
+              style={{ backgroundColor: "#827397", color: "white" }}
+            >
               <Table
                 sx={{ minWidth: 650 }}
                 size="small"
                 aria-label="a dense table"
+                style={{ color: "white" }}
               >
                 <TableHead>
                   <TableRow>
@@ -83,13 +82,28 @@ function Dashboard() {
                       }}
                     >
                       <TableCell align="center">{index + 1}</TableCell>
-                      <TableCell>{book.book_name}</TableCell>
+                      <TableCell>
+                        <a
+                          onClick={() =>
+                            navigate("/book", { state: { book: book } })
+                          }
+                          style={{ cursor: "pointer" }}
+                        >
+                          {book.book_name}
+                        </a>
+                      </TableCell>
                       <TableCell>{book.author}</TableCell>
                       <TableCell align="center">{book.price}</TableCell>
                       <TableCell align="center">{book.quantities}</TableCell>
                       <TableCell align="center">
-                        <EditIcon onClick={() => handleEdit(book)} />
-                        <DeleteIcon onClick={() => handleDelete(book)} />
+                        <EditIcon
+                          color="success"
+                          onClick={() => handleEdit(book)}
+                        />
+                        <DeleteIcon
+                          color="error"
+                          onClick={() => handleDelete(book)}
+                        />
                       </TableCell>
                     </TableRow>
                   ))}

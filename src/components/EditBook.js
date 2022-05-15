@@ -1,14 +1,14 @@
 import { Button } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import axios from "axios";
 import { Form, Formik } from "formik";
-import "./Form.css";
 import { useNavigate, useLocation } from "react-router-dom";
 
 function EditBook() {
   const URL = "https://61cbf244198df60017aebdbf.mockapi.io/library-management";
   const location = useLocation();
   const navigate = useNavigate();
+
   const initialValues = location.state.bookData;
 
   const validate = (value) => {
@@ -23,22 +23,18 @@ function EditBook() {
   const handleSubmit = async (formData, { resetForm }) => {
     const { id, ...data } = formData;
 
-    // console.log(data);
-
     try {
       const response = await axios.put(`${URL}/${id}`, data);
       resetForm();
       alert("Updated successfully!");
-      navigate("/")
+      navigate("/");
     } catch (err) {
       console.log(err);
     }
   };
 
-
   return (
     <>
-      {console.log(initialValues)}
       <h1 className="text-center mt-5">Edit Book</h1>
       <div className="container col-4 col-md-6 col-8 mt-5">
         <Formik
@@ -52,7 +48,6 @@ function EditBook() {
             touched,
             handleChange,
             handleBlur,
-            handleSubmit,
             isSubmitting,
             isValid,
           }) => (
